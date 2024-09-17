@@ -1,4 +1,4 @@
-﻿using Ejercicio_1.models;
+﻿using Ejercicio_2.clases;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,55 +8,44 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 
-namespace Ejercicio_1
+namespace Ejercicio_2
 {
     public partial class Form1 : Form
     {
-        private TirarDados tirarDados;
+        private NumAsientos avion;
 
         public Form1()
         {
             InitializeComponent();
-            tirarDados = new TirarDados(); // Inicializa la clase TirarDados
+            avion = new NumAsientos();
         }
 
-        // Este método se ejecuta cuando el usuario hace clic en el botón "Lanzar Dados"
-        private void btnLanzarDados_Click(object sender, EventArgs e)
+        private void btnSubmit_Click(object sender, EventArgs e)
         {
-            // Realiza una tirada
-            var (dado1, dado2, suma) = tirarDados.Tirar();
+            int section = rdoSmoking.Checked ? 1 : 2;
+            int seleccionarNum = avion.AsignarAsiento(section);
 
-            // Actualiza las etiquetas con los resultados
-            lblDado1.Text = $"Dado 1: {dado1}";
-            lblDado2.Text = $"Dado 2: {dado2}";
-            lblSuma.Text = $"Suma: {suma}";
-
-            // Mostrar el conteo acumulado de sumas
-            MostrarConteoSumas();
-        }
-
-        // Método para mostrar el conteo acumulado de las sumas
-        private void MostrarConteoSumas()
-        {
-            int[] conteoSumas = tirarDados.ObtenerConteoSumas();
-
-            // Limpiar el ListBox antes de mostrar los conteos actualizados
-            lstConteoSum.Items.Clear();
-            lstConteoSum.Items.Add("Suma\tCantidad");
-
-            for (int i = 0; i < conteoSumas.Length; i++)
+            if (seleccionarNum == -1)
             {
-                int suma = i + 2;
-                int cantidad = conteoSumas[i];
-                lstConteoSum.Items.Add($"{suma}\t{cantidad}");
+                string OtraSeccion = (section == 1) ? "No Fumar" : "Fumar";
+                if (MessageBox.Show($"La sección está llena. ¿Te gustaría ser asignado a la sección de {OtraSeccion}?",
+                    "Sección llena", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    section = (section == 1) ? 2 : 1;
+                    seleccionarNum = avion.AsignarAsiento(section);
+                }
             }
-        }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
+            if (seleccionarNum != -1)
+            {
+                string NombreSeccion = (section == 1) ? "Fumar" : "No Fumar";
+                lblBoardingPass.Text = $"Asiento asignado: {seleccionarNum}\nSección: {NombreSeccion}";
+            }
+            else
+            {
+                lblBoardingPass.Text = "El próximo vuelo sale en 3 horas.";
+            }
         }
     }
 }
