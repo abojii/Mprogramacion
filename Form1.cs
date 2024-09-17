@@ -1,5 +1,4 @@
-﻿using Ejercicio_3.models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,88 +8,93 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Ejercicio_3
+namespace Ejercicio_4
 {
     public partial class Form1 : Form
     {
-        // Lista para almacenar todas las ventas del mes
-        private List<Venta> ventas = new List<Venta>();
+        private int[] rangosSalarios = new int[9];
 
         public Form1()
         {
             InitializeComponent();
         }
 
-        private void btnAgregarVenta_Click(object sender, EventArgs e)
+        private void CalcularSalario(int ventasBrutas)
         {
-            // Obtener los valores ingresados
-            int vendedor = int.Parse(txtVendedor.Text);
-            int producto = int.Parse(txtProducto.Text);
-            float valorVenta = float.Parse(txtVenta.Text);
+            int salario = (int)(200 + 0.09 * ventasBrutas);
 
-            // Validar que los valores ingresados estén dentro del rango permitido
-            if (vendedor >= 1 && vendedor <= 4 && producto >= 1 && producto <= 5)
+            if (salario >= 1000)
             {
-                // Crear una nueva venta y agregarla a la lista de ventas
-                Venta nuevaVenta = new Venta(vendedor, producto, valorVenta);
-                ventas.Add(nuevaVenta);
-
-                MessageBox.Show("Venta agregada exitosamente.");
+                rangosSalarios[8]++;
+            }
+            else if (salario >= 900)
+            {
+                rangosSalarios[7]++;
+            }
+            else if (salario >= 800)
+            {
+                rangosSalarios[6]++;
+            }
+            else if (salario >= 700)
+            {
+                rangosSalarios[5]++;
+            }
+            else if (salario >= 600)
+            {
+                rangosSalarios[4]++;
+            }
+            else if (salario >= 500)
+            {
+                rangosSalarios[3]++;
+            }
+            else if (salario >= 400)
+            {
+                rangosSalarios[2]++;
+            }
+            else if (salario >= 300)
+            {
+                rangosSalarios[1]++;
             }
             else
             {
-                MessageBox.Show("Error: Vendedor o producto fuera de rango.");
+                rangosSalarios[0]++;
+            }
+        }
+
+        private void btnAgregarVenta_Click(object sender, EventArgs e)
+        {
+            int ventasBrutas;
+            if (int.TryParse(txtVentas.Text, out ventasBrutas))
+            {
+                CalcularSalario(ventasBrutas);
+                MessageBox.Show("Venta registrada exitosamente.");
+            }
+            else
+            {
+                MessageBox.Show("Por favor, ingrese un valor numérico válido.");
             }
 
-            // Limpiar campos de texto
-            txtVendedor.Clear();
-            txtProducto.Clear();
-            txtVenta.Clear();
+            txtVentas.Clear();
         }
 
         private void btnMostrarReporte_Click(object sender, EventArgs e)
         {
-            // Arreglo para resumir las ventas: [producto, vendedor]
-            float[,] resumenVentas = new float[5, 4];
-
-            // Sumar las ventas por vendedor y producto
-            foreach (Venta venta in ventas)
-            {
-                resumenVentas[venta.Producto - 1, venta.Vendedor - 1] += venta.ValorVenta;
-            }
-
-            // Mostrar el reporte en el ListBox
             lstReporte.Items.Clear();
-            lstReporte.Items.Add("Producto/Vendedor   1       2       3       4   | Total Producto");
+            lstReporte.Items.Add("Rangos de salarios:");
+            lstReporte.Items.Add($"$200-$299:   {rangosSalarios[0]} vendedores");
+            lstReporte.Items.Add($"$300-$399:   {rangosSalarios[1]} vendedores");
+            lstReporte.Items.Add($"$400-$499:   {rangosSalarios[2]} vendedores");
+            lstReporte.Items.Add($"$500-$599:   {rangosSalarios[3]} vendedores");
+            lstReporte.Items.Add($"$600-$699:   {rangosSalarios[4]} vendedores");
+            lstReporte.Items.Add($"$700-$799:   {rangosSalarios[5]} vendedores");
+            lstReporte.Items.Add($"$800-$899:   {rangosSalarios[6]} vendedores");
+            lstReporte.Items.Add($"$900-$999:   {rangosSalarios[7]} vendedores");
+            lstReporte.Items.Add($"$1000 o más: {rangosSalarios[8]} vendedores");
+        }
 
-            for (int producto = 0; producto < 5; producto++)
-            {
-                float totalProducto = 0;
-                string linea = $"Producto {producto + 1}       ";
+        private void lblVentas_Click(object sender, EventArgs e)
+        {
 
-                for (int vendedor = 0; vendedor < 4; vendedor++)
-                {
-                    linea += $"{resumenVentas[producto, vendedor],8:F2} ";
-                    totalProducto += resumenVentas[producto, vendedor];
-                }
-
-                linea += $"| {totalProducto,8:F2}";
-                lstReporte.Items.Add(linea);
-            }
-
-            // Totales por vendedor
-            lstReporte.Items.Add("----------------------------------------------------------");
-            string lineaTotales = "Total Vendedor     ";
-            for (int vendedor = 0; vendedor < 4; vendedor++)
-            {
-                float totalVendedor = 0;
-                for (int producto = 0; producto < 5; producto++)
-                {
-                    totalVendedor += resumenVentas[producto, vendedor];
-                }
-                lineaTotales += $"{totalVendedor,8:F2} ";
-            }
-            lstReporte.Items.Add(lineaTotales);
         }
     }
 }
