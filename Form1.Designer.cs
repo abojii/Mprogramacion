@@ -1,4 +1,7 @@
-﻿namespace Ejercicio_2
+﻿using System.Windows.Forms;
+using System;
+
+namespace Ejercicio_3
 {
     partial class Form1
     {
@@ -16,118 +19,145 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            this.txtVendedor = new System.Windows.Forms.TextBox();
+            this.txtProducto = new System.Windows.Forms.TextBox();
+            this.txtVenta = new System.Windows.Forms.TextBox();
+            this.lblVendedor = new System.Windows.Forms.Label();
+            this.lblProducto = new System.Windows.Forms.Label();
+            this.lblVenta = new System.Windows.Forms.Label();
+            this.btnAgregarVenta = new System.Windows.Forms.Button();
+            this.btnMostrarReporte = new System.Windows.Forms.Button();
+            this.lstReporte = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.rdoSmoking = new System.Windows.Forms.RadioButton();
-            this.rdoNonSmoking = new System.Windows.Forms.RadioButton();
-            this.btnSubmit = new System.Windows.Forms.Button();
-            this.lblBoardingPass = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
+            // 
+            // txtVendedor
+            // 
+            this.txtVendedor.Location = new System.Drawing.Point(140, 30);
+            this.txtVendedor.Name = "txtVendedor";
+            this.txtVendedor.Size = new System.Drawing.Size(100, 20);
+            this.txtVendedor.TabIndex = 1;
+            // 
+            // txtProducto
+            // 
+            this.txtProducto.Location = new System.Drawing.Point(140, 70);
+            this.txtProducto.Name = "txtProducto";
+            this.txtProducto.Size = new System.Drawing.Size(100, 20);
+            this.txtProducto.TabIndex = 2;
+            // 
+            // txtVenta
+            // 
+            this.txtVenta.Location = new System.Drawing.Point(140, 110);
+            this.txtVenta.Name = "txtVenta";
+            this.txtVenta.Size = new System.Drawing.Size(100, 20);
+            this.txtVenta.TabIndex = 3;
+            // 
+            // lblVendedor
+            // 
+            this.lblVendedor.AutoSize = true;
+            this.lblVendedor.Location = new System.Drawing.Point(50, 30);
+            this.lblVendedor.Name = "lblVendedor";
+            this.lblVendedor.Size = new System.Drawing.Size(74, 13);
+            this.lblVendedor.TabIndex = 4;
+            this.lblVendedor.Text = "Vendedor(1-4)";
+            // 
+            // lblProducto
+            // 
+            this.lblProducto.AutoSize = true;
+            this.lblProducto.Location = new System.Drawing.Point(50, 70);
+            this.lblProducto.Name = "lblProducto";
+            this.lblProducto.Size = new System.Drawing.Size(71, 13);
+            this.lblProducto.TabIndex = 5;
+            this.lblProducto.Text = "Producto(1-5)";
+            // 
+            // lblVenta
+            // 
+            this.lblVenta.AutoSize = true;
+            this.lblVenta.Location = new System.Drawing.Point(50, 110);
+            this.lblVenta.Name = "lblVenta";
+            this.lblVenta.Size = new System.Drawing.Size(82, 13);
+            this.lblVenta.TabIndex = 6;
+            this.lblVenta.Text = "Monto de venta";
+            // 
+            // btnAgregarVenta
+            // 
+            this.btnAgregarVenta.Image = global::Ejercicio_3.Properties.Resources.Agregar;
+            this.btnAgregarVenta.Location = new System.Drawing.Point(88, 150);
+            this.btnAgregarVenta.Name = "btnAgregarVenta";
+            this.btnAgregarVenta.Size = new System.Drawing.Size(53, 38);
+            this.btnAgregarVenta.TabIndex = 7;
+            this.btnAgregarVenta.UseVisualStyleBackColor = true;
+            this.btnAgregarVenta.Click += new System.EventHandler(this.btnAgregarVenta_Click);
+            // 
+            // btnMostrarReporte
+            // 
+            this.btnMostrarReporte.Image = global::Ejercicio_3.Properties.Resources.Save;
+            this.btnMostrarReporte.Location = new System.Drawing.Point(201, 150);
+            this.btnMostrarReporte.Name = "btnMostrarReporte";
+            this.btnMostrarReporte.Size = new System.Drawing.Size(56, 38);
+            this.btnMostrarReporte.TabIndex = 8;
+            this.btnMostrarReporte.UseVisualStyleBackColor = true;
+            this.btnMostrarReporte.Click += new System.EventHandler(this.btnMostrarReporte_Click);
+            // 
+            // lstReporte
+            // 
+            this.lstReporte.FormattingEnabled = true;
+            this.lstReporte.Location = new System.Drawing.Point(50, 220);
+            this.lstReporte.Name = "lstReporte";
+            this.lstReporte.Size = new System.Drawing.Size(300, 199);
+            this.lstReporte.TabIndex = 9;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(38, 24);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(76, 191);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(227, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Por favor selecciona tu preferencia de asiento:";
+            this.label1.Size = new System.Drawing.Size(75, 13);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "Agregar Venta";
             // 
-            // rdoSmoking
+            // label2
             // 
-            this.rdoSmoking.AutoSize = true;
-            this.rdoSmoking.Location = new System.Drawing.Point(80, 49);
-            this.rdoSmoking.Margin = new System.Windows.Forms.Padding(2);
-            this.rdoSmoking.Name = "rdoSmoking";
-            this.rdoSmoking.Size = new System.Drawing.Size(54, 17);
-            this.rdoSmoking.TabIndex = 1;
-            this.rdoSmoking.TabStop = true;
-            this.rdoSmoking.Text = "Fumar";
-            this.rdoSmoking.UseVisualStyleBackColor = true;
-            // 
-            // rdoNonSmoking
-            // 
-            this.rdoNonSmoking.AutoSize = true;
-            this.rdoNonSmoking.Location = new System.Drawing.Point(80, 91);
-            this.rdoNonSmoking.Margin = new System.Windows.Forms.Padding(2);
-            this.rdoNonSmoking.Name = "rdoNonSmoking";
-            this.rdoNonSmoking.Size = new System.Drawing.Size(71, 17);
-            this.rdoNonSmoking.TabIndex = 2;
-            this.rdoNonSmoking.TabStop = true;
-            this.rdoNonSmoking.Text = "No Fumar";
-            this.rdoNonSmoking.UseVisualStyleBackColor = true;
-            // 
-            // btnSubmit
-            // 
-            this.btnSubmit.Location = new System.Drawing.Point(80, 124);
-            this.btnSubmit.Margin = new System.Windows.Forms.Padding(2);
-            this.btnSubmit.Name = "btnSubmit";
-            this.btnSubmit.Size = new System.Drawing.Size(75, 24);
-            this.btnSubmit.TabIndex = 3;
-            this.btnSubmit.Text = "Asignar Asiento";
-            this.btnSubmit.UseVisualStyleBackColor = true;
-            this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
-            // 
-            // lblBoardingPass
-            // 
-            this.lblBoardingPass.AutoSize = true;
-            this.lblBoardingPass.Location = new System.Drawing.Point(38, 166);
-            this.lblBoardingPass.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblBoardingPass.Name = "lblBoardingPass";
-            this.lblBoardingPass.Size = new System.Drawing.Size(0, 13);
-            this.lblBoardingPass.TabIndex = 4;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackgroundImage = global::Ejercicio_2.Properties.Resources.Fumar;
-            this.pictureBox1.Location = new System.Drawing.Point(38, 40);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(35, 33);
-            this.pictureBox1.TabIndex = 5;
-            this.pictureBox1.TabStop = false;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.BackgroundImage = global::Ejercicio_2.Properties.Resources.No_fumar;
-            this.pictureBox2.Location = new System.Drawing.Point(38, 79);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(33, 33);
-            this.pictureBox2.TabIndex = 6;
-            this.pictureBox2.TabStop = false;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(188, 191);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(83, 13);
+            this.label2.TabIndex = 11;
+            this.label2.Text = "Mostrar Reporte";
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(286, 219);
-            this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.lblBoardingPass);
-            this.Controls.Add(this.btnSubmit);
-            this.Controls.Add(this.rdoNonSmoking);
-            this.Controls.Add(this.rdoSmoking);
+            this.ClientSize = new System.Drawing.Size(400, 450);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.lstReporte);
+            this.Controls.Add(this.btnMostrarReporte);
+            this.Controls.Add(this.btnAgregarVenta);
+            this.Controls.Add(this.lblVenta);
+            this.Controls.Add(this.lblProducto);
+            this.Controls.Add(this.lblVendedor);
+            this.Controls.Add(this.txtVenta);
+            this.Controls.Add(this.txtProducto);
+            this.Controls.Add(this.txtVendedor);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
-            this.Text = "Elegir Asiento";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.Text = "Resumen de Ventas";
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.RadioButton rdoSmoking;
-        private System.Windows.Forms.RadioButton rdoNonSmoking;
-        private System.Windows.Forms.Button btnSubmit;
-        private System.Windows.Forms.Label lblBoardingPass;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.TextBox txtVendedor;
+        private System.Windows.Forms.TextBox txtProducto;
+        private System.Windows.Forms.TextBox txtVenta;
+        private System.Windows.Forms.Label lblVendedor;
+        private System.Windows.Forms.Label lblProducto;
+        private System.Windows.Forms.Label lblVenta;
+        private System.Windows.Forms.Button btnAgregarVenta;
+        private System.Windows.Forms.Button btnMostrarReporte;
+        private System.Windows.Forms.ListBox lstReporte;
+        private Label label1;
+        private Label label2;
     }
 }
